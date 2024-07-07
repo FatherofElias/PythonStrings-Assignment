@@ -68,3 +68,30 @@ for review in reviews:
 # Printing sentiment tally
 print(sentiment_tally(reviews))
 
+# Task 3 
+
+# Implement a script that takes the first 30 characters of a review and appends "…" to create a summary.
+# Ensure that the summary does not cut off in the middle of a word.
+
+# Solution
+def summarize_reviews(reviews):
+    summaries = []
+    for review in reviews:
+        # If the review is shorter than or equal to 30 characters, no need to summarize
+        if len(review) <= 30:
+            summaries.append(review)
+        else:
+            # Find the last space within the first 30 characters
+            last_space = review.rfind(' ', 0, 30)
+            # If there's no space, just cut off at 30 characters
+            if last_space == -1:
+                last_space = 30
+            # Create the summary and append "…"
+            summary = review[:last_space] + "…"
+            summaries.append(summary)
+    return summaries
+
+# Printing review summaries
+summaries = summarize_reviews(reviews)
+for summary in summaries:
+    print(summary)
